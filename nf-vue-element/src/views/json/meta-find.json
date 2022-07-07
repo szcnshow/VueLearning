@@ -1,0 +1,237 @@
+{
+  "formMeta": {
+    "baseMeta": {
+      "quickFind": [
+        101, 102, 103
+      ],
+      "allFind": [
+        101, 102, 103, 104, 105, 106, 107, 109, 112, 113,
+        114, 115, 116, 117, 118, 119, 120, 121, 122
+      ],
+      "label-width": 100,
+      "finditem-width": 300,
+      "customer": {
+        "100": {
+          "title" : "方案一",
+          "ids" : [101, 102, 103, 106, 107, 104, 105],
+          "defaultFindKind": 101,
+          "defaultDateKind": "日期"
+        } 
+      },
+      "customerDefault": 100
+    },
+    "findKind": {
+      "101": {
+        "findkind" : [101, 102, 103, 104],
+        "dateControlKind" : [101, 102, 103, 106, 107, 104, 105],
+        "isRange" : true,
+        "isCorrect": false
+      } 
+    },
+    "itemMeta": {
+      "101": {  
+        "controlId": 101,
+        "colName": "controlId",
+        "label": "编号",
+        "controlType": 120,
+        "placeholder": "编号",
+        "title": "编号",
+        "autocomplete": "off",
+        "step": 1,
+        "colCount": 1
+      },
+      "102": {  
+        "controlId": 102,
+        "colName": "colName",
+        "label": "字段名称",
+        "controlType": 101,
+        "placeholder": "字段名称",
+        "title": "字段名称",
+        "autocomplete": "off",
+        "maxlength": 100,
+        "colCount": 1
+      },
+      "103": {  
+        "controlId": 103,
+        "colName": "controlType",
+        "label": "控件类型",
+        "controlType": 160,
+        "optionList":[],
+        "title": "控件类型",
+        "placeholder": "控件类型",
+        "colCount": 1
+      },
+      "104": {  
+        "controlId": 104,
+        "colName": "isClear",
+        "label": "是否清空",
+        "controlType": 151,
+        "title": "",
+        "autocomplete": "off",
+        "optionList": [{
+          "value": 1,
+          "title": "添加新纪录是否清空？"
+        }],
+        "colCount": 1
+      },
+      "105": {  
+        "controlId": 105,
+        "colName": "defaultValue",
+        "label": "默认值",
+        "controlType": 101,
+        "placeholder": "请输入默认值",
+        "title": "",
+        "autocomplete": "on",
+        "maxlength": 100,
+        "colCount": 1
+      },
+      "106": {  
+        "controlId": 106,
+        "colName": "date1",
+        "label": "日期",
+        "controlType": 110,
+        "title": "开始日期",
+        "colCount": 1,
+        "findKind": [421, 427, 422, 423, 424, 425, 426]
+      },
+      "107": {  
+        "controlId": 107,
+        "colName": "disabled",
+        "label": "是否禁用",
+        "controlType": 151,
+        "title": "",
+        "optionList": [{
+          "value": 1,
+          "title": "是否禁用"
+        }],
+        "colCount": 1
+      },
+      "109": {  
+        "controlId": 109,
+        "colName": "readonly",
+        "label": "只读",
+        "controlType": 151,
+        "autocomplete": "on",
+        "optionList": [{
+          "value": 1,
+          "title": "是否只读"
+        }],
+        "colCount": 1
+      },
+      "112": {  
+        "controlId": 112,
+        "colName": "placeholder",
+        "label": "占位文字",
+        "controlType": 101,
+        "placeholder": "请输入替换文字",
+        "title": "",
+        "autocomplete": "off",
+        "maxlength": 100
+      },
+      "113": {  
+        "controlId": 113,
+        "colName": "title",
+        "label": "提示文字",
+        "controlType": 101,
+        "placeholder": "请输入提示",
+        "title": "",
+        "autocomplete": "off",
+        "maxlength": 100
+      },
+      "114": {  
+        "controlId": 114,
+        "colName": "autocomplete",
+        "label": "是否历史记录",
+        "controlType": 153,
+        "autocomplete": "off",
+        "optionList": [
+          {
+            "value": "on",
+            "label": "打开"
+          },
+          {
+            "value": "off",
+            "label": "关闭"
+          }]
+      },
+      "115": {  
+        "controlId": 115,
+        "colName": "size",
+        "label": "是否可用",
+        "controlType": 151,
+        "placeholder": "请输入字符宽度",
+        "title": "字符宽度",
+        "autocomplete": "on"
+      },
+      "116": {  
+        "controlId": 116,
+        "colName": "maxlength",
+        "label": "最大字符数量",
+        "controlType": 120,
+        "placeholder": "请输入最大字符数",
+        "title": "最大字符数"
+      },
+      "117": {  
+        "controlId": 117,
+        "colName": "min",
+        "label": "最小数字",
+        "controlType": 120,
+        "placeholder": "请输入最小值",
+        "title": "最小值",
+        "autocomplete": "off",
+        "colCount": 1
+      },
+      "118": {  
+        "controlId": 118,
+        "colName": "max",
+        "label": "最大数字",
+        "controlType": 120,
+        "placeholder": "请输入最大值",
+        "title": "最大值",
+        "autocomplete": "off",
+        "colCount": 1
+      },
+      "119": {  
+        "controlId": 119,
+        "colName": "step",
+        "label": "步长",
+        "controlType": 120,
+        "placeholder": "请输入步长",
+        "title": "步长",
+        "autocomplete": "off",
+        "colCount": 1
+      },
+      "120": {  
+        "controlId": 120,
+        "colName": "rows",
+        "label": "行数",
+        "controlType": 120,
+        "placeholder": "请输入行数",
+        "title": "行数",
+        "autocomplete": "off",
+        "colCount": 1
+      },
+      "121": {  
+        "controlId": 121,
+        "colName": "cols",
+        "label": "列数",
+        "controlType": 120,
+        "step": 1,
+        "placeholder": "请输入列数",
+        "title": "列数",
+        "autocomplete": "off",
+        "colCount": 1
+      },
+      "122": {  
+        "controlId": 122,
+        "colName": "optionKey",
+        "label": "备选key",
+        "controlType": 101,
+        "placeholder": "请输入备选标识",
+        "title": "",
+        "autocomplete": "on",
+        "maxlength": 100
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Compiled Object files
+*.obj
+*.pdb
+*.xml
+
+# Executables
+*.exe
+
+# Building
+Debug/
+Release/
+.vs/
+node_modules/

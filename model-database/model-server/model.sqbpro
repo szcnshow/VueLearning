@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="E:/Development/NetStandardLibaray/VueLearning/model-database/model-server/model.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="3140"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,16:mainmodelConcentInfo"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="modelConcentInfo" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="30"/><column index="2" value="50"/><column index="3" value="50"/><column index="4" value="120"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="deviceTables.sql">DROP TABLE deviceInfo if EXISTS deviceInfo;
+DROP TABLE channelInfo if EXISTS channelInfo;
+DROP TABLE deviceAmbient if EXISTS deviceAmbient;
+DROP TABLE deviceStatus if EXISTS deviceStatus;
+
+CREATE TABLE deviceInfo (
+	id INTEGER NOTNULL PRIMARY KEY AUTOINCREMENT,
+	factory TEXT NOT NULL,	/*仪器厂商*/
+	brand TEXT NULL,		/*仪器商标,同一个厂商的不同仪器品牌, ViewDeep2, ViewDeep3*/
+	category TEXT NULL,		/*仪器种类, NIR, IR, RAMAN*/
+	model TEXT NULL,		/*同一种类型仪器的不同型号: Q2000, Q3000*/
+	isOnline INTEGER,		/*是否为Online*/
+	isSimulate INTEGER,		/*是否为simulate*/
+	scanChannels INTEGER,	/*采集通道数量*/	
+	currentChannel INTEGER,	/*当前通道*/
+	state INTEGER,			/*设备当前状态(OK,Idel, Busy, Error,NotFound,unKnown)*/
+	stateMessage TEXT NULL, /*当前状态描述*/
+	progressPercent INTEGER,	/*扫描进度百分比值*/
+	pathlength REAL,		/*设备光程（单位：m)*/
+	updateTime INTEGER,		/*状态更新时间, Unix Time, the number of seconds since 1970-01-01 00:00:00 */
+	channelIDs TEXT NOTNULL, 	/*设备通道ID列表(以','分割)，设备运行时，从第一个开始顺序循环执行*/
+)
+
+/*光谱通道参数设置*/
+CREATE TABLE channelInfo (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	FOREIGN KEY (device_id) REFERENCES deviceInfo(id)	/*通道所属设备的ID*/
+	channelIndex INTEGER,			/*通道编号*/
+	selected INTEGER DEFAULT 0,		/*是否选中运行*/
+	state INTEGER DEFAULT 0,		/*通道当前状态(OK, Error, Unknown)*/
+	isReference INTEGER DEFAULT 0,	/*是否为参考通道*/
+	parameter TEXT NOTNULL,			/*采集参数设置*/
+	spectrumType INTEGER DEFAULT 2,	/*结果光谱类型（吸收谱、透过谱、背景谱等，与SDSpcFileFormat中YAXISTYPE相同）,缺省为2=吸收谱*/
+	useGlobalReference INTEGER DEFAULT 0,	/*是否使用全局参考光谱,在本Channel执行之前，会有专门的参考光谱通道采集光谱，并设置到每一个通道中, 本属性适用于将光路扩展器的一路作为参考光谱的情况，有内部参比通道的设备不适用*/
+	subtracteSpectrum BLOB NULL,	/*扣除的光谱*/
+	modelIds TEXT NULL,				/*分析模型ID列表，','分割*/
+	modelAdjustments TEXT NULL,		/*序列化后的模型调整计算公式K-V序列, key=modelID, value=Python numpy的四则运算方法，与模型一起发送给分析服务器*/
+	description TEXT NULL			/*描述*/
+	updateTime INTEGER,				/*状态更新时间, Unix Time, the number of seconds since 1970-01-01 00:00:00 */
+)
+
+/*设备温度压力等状态,如果状态不变化（改变小于0.1），30分钟更新一次*/
+CREATE TABLE deviceAmbient (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	FOREIGN KEY (device_id) REFERENCES deviceInfo(id)	/*所属设备的ID*/
+	temperature INTEGER,		/*温度（摄氏度）*100*/
+	humidity INTEGER,			/*相对湿度（%）*100*/
+	pressure INTEGER,			/*压力(KPa)*100*/
+	updateTime INTEGER,			/*状态更新时间, Unix Time, the number of seconds since 1970-01-01 00:00:00 */
+)
+
+/*设备状态记录，通道或者状态变化才记录*/
+CREATE TABLE deviceStatus (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	FOREIGN KEY (device_id) REFERENCES deviceInfo(id)	/*所属设备的ID*/
+	channelIndex INTEGER,		/*通道编号*/
+	state INTEGER,				/*设备当前状态(OK,Idel, Busy, Error,NotFound,unKnown)*/
+	stateMessage TEXT NULL, 	/*当前状态描述*/
+	updateTime INTEGER,			/*状态更新时间, Unix Time, the number of seconds since 1970-01-01 00:00:00 */
+)
+
+</sql><sql name="modelTables.sql">DROP TABLE modelConcents IF EXISTS modelConcents
+DROP TABLE modelSpectrum IF EXISTS modelSpectrum
+DROP TABLE modelSampleInfo IF EXISTS modelSampleInfo
+DROP TABLE modelConcentInfo IF EXISTS modelConcentInfo
+
+
+-- DROP TABLE concents IF EXISTS concents
+-- DROP TABLE spectrum IF EXISTS spectrum
+-- DROP TABLE sampleInfo IF EXISTS sampleInfo
+-- DROP TABLE concentInfo IF EXISTS concentInfo
+
+/*模型组分信息*/
+CREATE TABLE modelConcentInfo (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	name TEXT NOT NULL,
+	unit TEXT NOT NULL,		/*浓度单位*/
+	description TEXT NULL
+);
+
+/*模型样品信息*/
+CREATE TABLE modelSampleInfo (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	name TEXT NOT NULL,
+	company TEXT NULL,	/*样品的企业*/
+	form TEXT NULL,		/*样品形态*/
+	description TEXT NULL
+);
+
+/*模型光谱*/
+CREATE TABLE modelSpectrum(
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	sample_id INTEGER NOT NULL,		/*对应样品信息*/
+	name TEXT NOT NULL,			/*光谱名称*/
+	data BLOB NOT NULL,			/*光谱数据*/
+	batch_no INTEGER NULL,		/*同一个样品不同扫描，标记为一个号码*/
+	description TEXT NULL,		/*光谱描述*/
+	FOREIGN KEY (sample_id) REFERENCES modelSampleInfo(id)	/*对应的样品信息*/
+);
+
+/*模型组分浓度*/
+CREATE TABLE modelConcents(
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	spectrum_id INTEGER NOT NULL,		/*对应光谱*/
+	concentdict_id INTEGER NOT NULL,		/*对应组分信息*/
+	data REAL NOT NULL,				/*组分值*/
+	FOREIGN KEY (spectrum_id) REFERENCES modelSpectrum(id),				/*对应的光谱*/
+	FOREIGN KEY (concentdict_id) REFERENCES modelConcentInfo(id)		/*对应的组分信息*/
+);
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

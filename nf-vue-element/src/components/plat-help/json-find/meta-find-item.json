@@ -1,0 +1,194 @@
+{
+  "formMeta": {
+    "baseMeta": {
+      "formColCount": 2,
+      "colOrder": [
+        101, 103, 102, 108,
+        119,
+        130,
+        114,
+        112, 113,
+        123
+      ]
+    },
+    "formColShow": {
+      "103": {
+        "101" : [
+          101, 103, 102,  108, 
+          130, 
+          114,
+          112, 113
+        ],
+        "110" : [
+          101, 103, 102,  108, 
+          112, 113
+        ],
+        "115" : [
+          101, 103, 102,  108, 
+          112, 113
+        ],
+        "120" : [
+          101, 103, 102,  108,
+          119,
+          112, 113
+        ],
+        "152": [
+          101, 103, 102,  108,
+          112, 113,
+          123
+        ],
+        "153": [
+          101, 103, 102,  108,
+          112, 113,
+          123
+        ],
+        "160": [
+          101, 103, 102,  108,
+          112, 113,
+          123
+        ],
+        "1031" : [101, 103, 102, 108]
+      } 
+    },
+    "ruleMeta": {
+    },
+    "itemMeta": {
+      "101": {  
+        "controlId": 101,
+        "colName": "controlId",
+        "label": "编号",
+        "controlType": 101,
+        "isClear": false,
+        "defaultValue": "",
+        "placeholder": "编号",
+        "title": "编号",
+        "readonly": true,
+        "colCount": -2
+      },
+      "102": {  
+        "controlId": 102,
+        "colName": "colName",
+        "label": "字段名称",
+        "controlType": 101,
+        "isClear": false,
+        "defaultValue": "",
+        "placeholder": "请输入字段名称",
+        "title": "字段名称",
+        "autocomplete": "off",
+        "maxlength": 100,
+        "colCount": 1
+      },
+      "108": {  
+        "controlId": 108,
+        "colName": "label",
+        "label": "标签名称",
+        "controlType": 101,
+        "isClear": false,
+        "defaultValue": "",
+        "placeholder": "请输入标签名称",
+        "title": "标签名称",
+        "autocomplete": "off",
+        "maxlength": 100,
+        "colCount": 1
+      },
+      "103": {  
+        "controlId": 103,
+        "colName": "controlType",
+        "label": "控件类型",
+        "controlType": 160,
+        "optionList":[],
+        "isClear": false,
+        "required": true,
+        "title": "控件类型",
+        "placeholder": "请选择控件类型",
+        "colCount": -2
+      },
+      "112": {  
+        "controlId": 112,
+        "colName": "placeholder",
+        "label": "占位文字",
+        "controlType": 101,
+        "isClear": false,
+        "defaultValue": "",
+        "required": true,
+        "placeholder": "请输入替换文字",
+        "title": "",
+        "autocomplete": "off",
+        "maxlength": 100
+      },
+      "113": {  
+        "controlId": 113,
+        "colName": "title",
+        "label": "提示文字",
+        "controlType": 101,
+        "isClear": false,
+        "defaultValue": "",
+        "required": true,
+        "placeholder": "请输入提示",
+        "title": "",
+        "autocomplete": "off",
+        "maxlength": 100
+      },
+      "114": {  
+        "controlId": 114,
+        "colName": "autocomplete",
+        "label": "是否历史记录",
+        "controlType": 153,
+        "isClear": false,
+        "defaultValue": "off",
+        "title": "",
+        "autocomplete": "off",
+        "optionList": [
+          {
+            "value": "on",
+            "label": "打开"
+          },
+          {
+            "value": "off",
+            "label": "关闭"
+          }]
+      },
+      "130": {  
+        "controlId": 130,
+        "colName": "maxlength",
+        "label": "最大字符数量",
+        "controlType": 120,
+        "isClear": false,
+        "defaultValue": 1,
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "placeholder": "请输入最大字符数",
+        "title": "最大字符数",
+        "colCount": -2
+      },
+      "119": {  
+        "controlId": 119,
+        "colName": "step",
+        "label": "步长",
+        "controlType": 120,
+        "isClear": false,
+        "defaultValue": 1,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "placeholder": "请输入步长",
+        "title": "步长",
+        "colCount": 2
+      },
+      "123": {  
+        "controlId": 123,
+        "colName": "optionList",
+        "label": "备选项",
+        "controlType": 1,
+        "isClear": false,
+        "defaultValue": "",
+        "placeholder": "请输入备选项",
+        "autocomplete": "on",
+        "maxlength": 100,
+        "colCount": 2
+      } 
+    }
+  }
+}
+  

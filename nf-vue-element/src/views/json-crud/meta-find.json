@@ -1,0 +1,56 @@
+{
+  "findMeta": {
+    "baseMeta": {
+      "quickFind": [
+        101, 102, 103
+      ],
+      "allFind": [
+        101, 102, 103, 104, 105, 106, 107, 109, 112, 113,
+        114, 115, 116, 117, 118, 119, 120, 121, 122
+      ],
+      "label-width": 100,
+      "finditem-width": 300,
+      "customer": {
+        "100": {
+          "title" : "方案一",
+          "ids" : [101, 102, 103, 106, 107, 104, 105],
+          "defaultFindKind": 101,
+          "defaultDateKind": "日期"
+        } 
+      },
+      "customerDefault": 100
+    },
+    "findKind": {
+      "101": {
+        "findkind" : [101, 102, 103, 104],
+        "dateControlKind" : [101, 102, 103, 106, 107, 104, 105],
+        "isRange" : true,
+        "isCorrect": false
+      } 
+    },
+    "itemMeta": {
+      "101": {
+        "controlId": 101,
+        "colName": "controlId",
+        "label": "编号",
+        "controlType": 120,
+        "placeholder": "编号",
+        "title": "编号",
+        "autocomplete": "off",
+        "step": 1,
+        "colCount": 1
+      },
+      "102": {  
+        "controlId": 102,
+        "colName": "colName",
+        "label": "字段名称",
+        "controlType": 101,
+        "placeholder": "字段名称",
+        "title": "字段名称",
+        "autocomplete": "off",
+        "maxlength": 100,
+        "colCount": 1
+      }
+    }
+  }
+}
